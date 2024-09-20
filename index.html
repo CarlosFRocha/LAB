@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Marcação de Exames</title>
+</head>
+   <script>
+        function calcularTotal() {
+            let total = 0;
+            if (document.getElementById('glicose').checked) total += 50;
+            if (document.getElementById('sodio').checked) total += 20;
+            if (document.getElementById('hemograma').checked) total += 30;
+        
+          
+            document.getElementById('total').innerText = "Total: R$ " + total.toFixed(2);
+        }
+
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const date = document.getElementById('date').value;
+            const endereco = document.getElementById('endereco').value;
+            const telefone = document.getElementById('telefone').value;
+            const formaPagamento = document.getElementById('formaPagamento').value;
+            const consultas = [];
+            if (document.getElementById('glicose').checked) consultas.push("Glicose em Jejum");
+            if (document.getElementById('sodio').checked) consultas.push("Sódio");
+            if (document.getElementById('hemograma').checked) consultas.push("Hemograma");
+     
+            const total = document.getElementById('total').innerText;
+
+            const mensagem = `Gostaria de realizar esses exames: 
+
+Nome: ${nome}\nDate e Hora: ${date}\nEndereço: ${endereco}\nTelefone: ${telefone}\nForma de Pagamento: - ${formaPagamento} 
+   \n# Exames: ${consultas.join(', ')}
+    ______________________________________
+\n${total}
+
+Laboratorio Itinga Agradece!`;
+window.open(`https://api.whatsapp.com/send?phone=5599992247544&text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+        function mostrarDescricao(botao) {
+        var descricao = botao.previousElementSibling;
+        if (descricao.style.display === "none") {
+            descricao.style.display = "block";
+            botao.textContent = "Fechar";
+        } else {
+            descricao.style.display = "none";
+            botao.textContent = "Descrição";
+        }
+    }
+    </script>
+<style>
+body{font-family: Verdana; background-color: #cee0ee; text-align: center;}
+section#nav-test { height: 10vh; display: flex; justify-content: center; align-items: center;}
+    section#nav-test #nav-container ul {display: flex;background: #1265a5;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);padding-left: 20px;padding-right: 20px; margin: 0; border-radius: 10px;}
+    section#nav-test #nav-container ul li {display: flex;align-items: center;min-height: 48px;margin-left: 20px; cursor: pointer; }
+    section#nav-test #nav-container ul li:first-child {margin-left: 0;}
+    section#nav-test #nav-container ul li a {color: #f1f1f1;}
+    .whatsapp-link {position: fixed;width: 40px;height: 40px;bottom: 40px;right: 15px;border-radius: 50px;text-align: center;font-size: 30px;z-index: 1000;}
+    .btn-des{border-radius: 8px; padding: 3px;}
+    h1{color: white;}
+    input[type="checkbox"]{width: 20px; height: 20px;}
+    table{background-color: rgb(112, 112, 116);color: white; height: 10vh; display: flex; justify-content: center; align-items: center;}
+    .produtos{text-align: center; }
+</style>
+<body>
+<marquee id="topo" scrollamount="0" style="font-family: Verdana; font-weight: 700; font-size: 130%; 
+        box-shadow: 10px 10px 20px rgb(0, 0, 0), -10px -10px 20px rgb(0, 0, 0);background: linear-gradient(90deg, rgb(0, 89, 255), rgb(0, 38, 255), rgb(0, 68, 255)); text-align: center;">
+    <h1>LABORATÓRIO <br> ITINGA</h1></marquee>
+    <style>
+        .carousel {position: relative; max-width: 350px;margin: 0 auto;cursor: pointer; bottom: -5px;}
+        .slide1 {display: flex;}
+        .slide1 img {width: 100%; display: none;}
+        .prev {left: 0;width: 10%; margin-left: 10%;}
+        .next {right: 0;width: 10%;margin-left: 60%;}
+    </style>
+    <div  class="carousel">
+        <div id="N1" class="slide1">
+          <a href="#BA"><img src="teste.png" alt="Imagem 2"></a>
+          <a href="#CA"><img src="teste.png" alt="Imagem 3"></a>
+        </div>
+        <img class="prev" src="seta e.png"></input>
+        <img class="next" src="seta d.png"></input>
+    </div>
+    <script>
+        const slide1 = document.querySelectorAll('.slide1 img');
+        let currentImage = 0;
+        function showImage(index) {
+            slide1.forEach(img => img.style.display = 'none');
+            slide1[index].style.display = 'block';
+        }
+        document.querySelector('.next').addEventListener('click', function () {
+            currentImage = (currentImage + 1) % slide1.length;
+            showImage(currentImage);
+        });
+        document.querySelector('.prev').addEventListener('click', function () {
+            currentImage = (currentImage - 1 + slide1.length) % slide1.length;
+            showImage(currentImage);
+        });
+        showImage(currentImage);
+    </script>
+    <section id="nav-test">
+        <div id="nav-container">
+            <ul style="font-size: 80%;">
+                <li class="nav-li"><a href="#N1">PROMOÇÕES</a></li>
+                <li class="nav-li"><a href="#C1">CONTATOS</a></li>
+            </ul>
+            <div id="line"></div>
+        </div>
+    </section>
+   <div class="menu">
+            <button class="accordion" style="background-color: #f1f1f1;color: #333;cursor: pointer;padding: 18px;width: 100%;text-align: center;
+      border: none;outline: none;transition: background-color 0.3s; font-weight: 600; background-color: rgb(88, 88, 250); color: white;">ABRIR CATEGORIAS:</button>
+            <div class="panel">
+                <a href="#T">EXAME 1</a>
+                <!--<a href="#A">SUCOS</a>-->
+                <a href="#R">EXAME 2</a>
+                <a href="#H">EXAME 3</a>
+            </div>
+        </div><br>
+        <style>
+            .menu { display: flex;flex-direction: column;}
+            .panel { display: none;padding: 0 18px; background-color: white; text-align: center;}
+           .panel a { display: block; padding: 12px; text-decoration: none; color: #333;}
+           .panel a:hover {background-color: #f9f9f9;}
+           </style>
+               <script>
+                   var acc = document.getElementsByClassName("accordion");
+                   var i;
+       
+                   for (i = 0; i < acc.length; i++) {
+                       acc[i].addEventListener("click", function () {
+                           this.classList.toggle("active");
+                           var panel = this.nextElementSibling;
+                           if (panel.style.display === "block") {
+                               panel.style.display = "none";
+                           } else {
+                               panel.style.display = "block";
+                           }
+                       });
+                   }
+               </script>
+                <script>
+                    function mostrarSelecionadas() {
+                        const opcoes = document.querySelectorAll('input[type="checkbox"]:checked');
+                        const selecionadas = Array.from(opcoes).map(opcao => opcao.value);
+                        document.getElementById('resultado').innerText = 'Opções Selecionadas: ' + selecionadas.join(', ');
+                    }
+                </script>
+                <marquee id="topo" scrollamount="7" style="font-family: Verdana; font-weight: 700; font-size: 120%; 
+                box-shadow: 10px 10px 20px rgb(0, 0, 0), -10px -10px 20px rgb(0, 0, 0);background: linear-gradient(90deg, rgb(137, 172, 238), rgb(137, 154, 253), rgb(54, 104, 243));">
+            <h1>MARQUE SEUS EXAMES:</h1></marquee><br><br>
+
+        <div class="produtos">
+        <table border="2"><tr><th><label><img style="width: 50px;" src="glicemia-em-jejum-beep-saude.png" alt=""><input type="checkbox" id="glicose" onclick="calcularTotal()"> <u>Glicose em Jejum: <div style="background-color: yellow; color: black; font-weight: 600;">R$ 50,00</div></u></th></tr></table></label><br><p class="descricao" style="display: none;">Nome: Glicose (glicemia basal). <br> Material: Sangue, Liquor, Urina</p>
+        <button class="btn-des" onclick="mostrarDescricao(this)">Descrição</button><br><br>
+       
+        <table border="2"><tr><th><label><img style="width: 50px;" src="glicemia-em-jejum-beep-saude.png" alt=""><input type="checkbox" id="sodio" onclick="calcularTotal()"> <u>Sódio: <div style="background-color: yellow; color: black; font-weight: 600;">R$ 20,00</div></u></th></tr></table></label><br><p class="descricao" style="display: none;">Nome:	Sódio. <br> Material: Sangue</p>
+        <button class="btn-des" onclick="mostrarDescricao(this)">Descrição</button><br><br>
+        
+        <table border="2"><tr><th><label><img style="width: 50px;" src="glicemia-em-jejum-beep-saude.png" alt=""><input type="checkbox" id="hemograma" onclick="calcularTotal()"> <u>Hemograma: <div style="background-color: yellow; color: black; font-weight: 600;">R$ 30,00</div></u></th></tr></table></label><br><p class="descricao" style="display: none;">Nome:	Hemograma. <br> Material: Sangue</p>
+        <button class="btn-des" onclick="mostrarDescricao(this)">Descrição</button><br><br></div>
+
+   
+        ______________________________________
+        <h3 id="total">Total: R$ 0,00</h3>
+        NOME COMPLETO: <br>
+        <input style="border-radius: 10px; text-align: center;" type="text" id="nome" placeholder="Nome"><br><br>
+        DATA E HORA: <br>
+        <input  style="border-radius: 10px; text-align: center;" type="datetime-local" id="date" placeholder="Data e Hora" ><br><br>
+        ENDEREÇO: <br>
+        <input  style="border-radius: 10px; text-align: center;" type="text" id="endereco" placeholder="Endereço" ><br><br>
+        TELEFONE: <br>
+        <input  style="border-radius: 10px; text-align: center;" type="text" id="telefone" placeholder="Telefone" ><br><br>
+        <label for="formaPagamento">FORMA DE PAGAMENTO:</label><br>
+    <select style="border-radius: 10px; text-align: center;" id="formaPagamento" name="formaPagamento" required>
+        <option value="PIX">PIX</option>
+        <option value="Cart. Crédito">Cartão de Crédito</option>
+        <option value="Cart. Débito">Cartão de Débito</option>
+        <option value="Dinheiro">Dinheiro</option>
+    </select><br><br>
+        <button class="enviar" type="button" onclick="enviarWhatsApp()">Enviar</button><br><br>
+        <a class="whatsapp-link" href="https://wa.me/5599992247544" target="_blank"><img
+            class="whatsapp-link" src="whatsapp.png" alt=""></a>
+    
+    <footer>
+        <style>
+            footer {background-color: #2b4170;color: #fff;text-align: center;padding: 10px 0;}
+            .rodape ul {list-style: none;padding: 0;}
+            .rodape li {display: inline;margin: 0 10px;}
+            .rodape a {color: #fff;text-decoration: none;}
+            .rodape a:hover { text-decoration: underline;}
+            .wha { width: 2%;box-shadow: 10px, 10px, 20px black -10px -10px 20px black;}
+            .inst {width: 2%;}
+            .whatsapp-link {position: fixed;width: 40px;height: 40px;bottom: 40px;right: 15px;border-radius: 50px;text-align: center;font-size: 30px;z-index: 1000;}
+            .car {width: 20%;margin-top: 3%; }
+            .car2 {width: 3%;position: fixed;position: fixed;width: 40px;height: 40px;bottom: 130px;right: 15px;text-align: center;font-size: 30px;z-index: 1000;background-color: rgb(165, 164, 164);border-radius: 30%;}
+            .car3 {width: 3%;position: fixed;position: fixed;width: 40px;height: 40px;bottom: 220px;right: 15px;text-align: center;font-size: 30px;z-index: 1000;background-color: rgb(165, 164, 164);border-radius: 30%;}
+            #total{color: red;}
+            h3{color: blue; font-family: Verdana; font-size: 30px;}
+            .descricao{font-size: 15px; font-family: Verdana; font-weight: 600; color: red;}
+            u{font-weight: 500; font-family: Verdana;font-size: 20px;}
+            .enviar{font-family: Verdana; font-weight: 600; font-size: 20px; background-color: blue; color: white; border-radius: 10px; padding: 5px; cursor: pointer;}
+            table{border-radius: 10px;}
+            th{border-radius: 8px;}
+         
+        </style>
+        <!--rodape-->
+        <div class="rodape">
+            <ul>
+                <li id="C1">CONTATOS:</li>
+                <h4> <img class="wha" src="whatsapp.png">(99) 99224-7544</h4>
+                <li>
+                  <img id="C1" class="inst" src="instagram.png" alt=""><a style="font-size: 100%;"
+                        href="https://www.instagram.com/anacamiladesignerdefestas?igsh=YWVhYXN4bTZjNmxj&utm_source=qr">
+                        <b>Acesse nosso Instagram</b></a>
+                    <a class="whatsapp-link" href="https://wa.me/5599992247544" target="_blank"><img
+                            class="whatsapp-link" src="whatsapp.png" alt=""></a>
+                </li>
+                <a href="#total"><img class="car2" src="carrinho-de-compras.png"></a>
+                <a href="#topo"><img class="car3" src="img topo.png"></a>
+            </ul>
+            <!-- <li><b>Email:</b> itingadomaranhao@gmail.com</li><br><br> -->
+            <li><b>Endereço:</b> Rua Buriti, Nº 206, Vila Emanuela, Itinga do Maranhão. <br>
+                <br><strong>Horario de atendimento:</strong>  Segunda a Sábado das 8:00 as 18:00.
+            <br><br>Formas de pagamentos:
+            </li><br>
+
+            <img class="car" src="cartao.webp" alt=""><br><br>
+            <a  href="https://wa.me/5599992247544" target="_blank"><li><i><u style="font-size: 15px;">Site criado por: Carlos de Freitas Rocha. <br>Click aqui e faça seu orçamento.</u></i></li></a>
+            <p><a  href="https://wa.me/5599992247544" target="_blank"><img src="logo2.png" style="width: 50px;"></a></p>
+        </div>
+    </footer>
+</body>
+</html>

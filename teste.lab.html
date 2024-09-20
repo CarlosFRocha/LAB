@@ -1,0 +1,47 @@
+# Data e Horário no Formato do Brasil
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data e Horário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        #data-horario {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data e Horário Atual</h1>
+    <div id="data-horario"></div>
+
+    <script>
+        function atualizarDataHora() {
+            const opcoes = { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: false,
+                timeZone: 'America/Sao_Paulo'
+            };
+            const dataHoraAtual = new Date().toLocaleString('pt-BR', opcoes);
+            document.getElementById('data-horario').innerText = dataHoraAtual;
+        }
+
+        setInterval(atualizarDataHora, 1000);
+        atualizarDataHora();
+    </script>
+</body>
+</html>
